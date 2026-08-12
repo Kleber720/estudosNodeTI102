@@ -8,7 +8,7 @@ const PORT= Number (process.env.PORT || 3000);
 
 app.get("/usuarios", async (req,res)=>{
     try{
-        const[usuarios]=await listarUsuarios();
+        const usuarios=await listarUsuarios();
         res.status(200).json(usuarios);
 
     }catch(error){
