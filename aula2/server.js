@@ -2,6 +2,7 @@ const express= require("express");
 const {listarUsuarios}=require("./models/usuarioModels");
 require("dotenv").config();
 const app=express();
+app.use(express.json());
 
 const PORT= Number (process.env.PORT || 3000);
 
