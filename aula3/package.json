@@ -1,0 +1,16 @@
+{
+  "name": "aula3",
+  "version": "1.0.0",
+  "description": "tipescript",
+  "main": "entidade.js",
+  "scripts": {
+    "dev": "node entidade.js",
+    "dev2": "tsx entidade2.ts"
+  },
+  "author": "kleb",
+  "license": "ISC",
+  "devDependencies": {
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
