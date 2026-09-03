@@ -157,11 +157,3 @@ export { ProdutoInfrastructure };     //  Usar na UC de Teste
 export default produtoInfrastructure; //  Acessar pela controller
 
 
-// const catetoria= new Categoria(1,"Frios");
-// const produto1= new Produto(1, "Produto 1", "Descrição do Produto 1", 10.99, new Date("2026-09-22"), catetoria);
-
-// try{
-//     produtoInfrastructure.criarProduto(produto1);
-// }catch(error){
-//     console.error("Erro ao criar produto:", error);
-// }
