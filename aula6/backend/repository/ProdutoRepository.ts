@@ -1,12 +1,12 @@
-import { Produto } from "../models/entities/produto";
+import { Produto } from "../models/entidade/Produto";
+export interface ProdutoRepository {
 
-export interface ProdutoRepository{
-
-    criarProduto(produto:Produto): Promise<any>;
-    buscarPodutoPorId(id:number): Promise<any>;
+    criarProduto(produto: Produto): Promise<any>;
+    buscarProdutoPorNome(nome: String): Promise<any>;
+    buscarProdutoPorId(id: Number): Promise<any>;
     listarProdutos(): Promise<any>;
-    atualizarProduto(id:number, produto:Produto): Promise<any>;
-    atualizarProdutoParcial(id:number, produto: any): Promise<any>;
-    deletarProduto(id:number): Promise<any>;
+    atualizarProduto(id: Number, produto: Produto): Promise<any>;
+    atualizarProdutoParcial(id: Number, produto: Produto): Promise<any>;
+    deletarProduto(id: Number): Promise<any>;
 
 }

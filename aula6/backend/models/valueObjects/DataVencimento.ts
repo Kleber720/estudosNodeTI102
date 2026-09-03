@@ -1,23 +1,24 @@
-export class DataVencimento{
-    private dataVencimento: Date;
+export class DataVencimento {
+    private data: Date;
 
-    constructor(dataVencimento: Date){
-        this.validateDataVencimento(dataVencimento); //so ira construir o objeto se a data for valida
-        this.dataVencimento = dataVencimento;
+    constructor(data: Date) {
+        this.validateData(data);
+        this.data = data;
     }
 
-    getDataVencimento(): Date{
-        return this.dataVencimento;
+    getData(): Date {
+        return this.data;
     }
 
-    private validateDataVencimento(dataVencimento: Date): boolean{
-        const now = new Date();
-        if(dataVencimento < now){
-            throw new Error("Data de vencimento não pode ser no passado");
+    private validateData(data: Date): void {
+        const hoje = new Date();
+        if (data < hoje) {
+            throw new Error("A data de vencimento não pode ser no passado.");
         }
-        return true;
     }
-    equal(dataVencimento: DataVencimento): boolean{
-        return this.dataVencimento.getTime() === dataVencimento.getDataVencimento().getTime();
+
+    equals(dataVencimento: DataVencimento): boolean {
+        return this.data.getTime() === dataVencimento.getData().getTime();
     }
 }
+
