@@ -1,6 +1,7 @@
 export interface CriarProdutoDTO { 
     nome: string;
     descricao: string;
-    preco: number;
-    quantidade: number;
+    valor: number;
+    data_vencimento: Date;
+    id_categoria: number;
 }

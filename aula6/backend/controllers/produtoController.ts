@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import produtosInfrastructure from '../infrastructure/produtosInfrastructure';
 import { Produto } from '../models/entidade/Produto';
+import produtoService  from "../services/ProdutoService";
+import { CriarProdutoDTO } from '../models/dto/CriarProdutoDTO';
 
 
 
@@ -18,16 +20,11 @@ export async function listarProdutos(req: Request, res: Response) {
 
 export async function criarProduto(req: Request, res: Response) {
     try{
-        const produto= req.body;
-        const newProduto= new Produto(0, produto.nome, produto.descricao, produto.valor, produto.data_vencimento, produto.id_categoria);
+        const prouto:CriarProdutoDTO = req.body;
+        const novoProduto= await produtoService.criarProduto(prouto);
 
-        // Toda vez que for passar um objeto para o banco de dados, é necessário passar o objeto da entidade, e não o objeto do body da requisição.
-        const resultado= await produtosInfrastructure.criarProduto(newProduto);
+        res.status(201).json(novoProduto,mensagem:'Produto criado com sucesso');
         
-        if(!resultado){
-            res.status(400).json({ error: 'Não foi possível criar o produto' });
-        }
-        res.status(201).json({ message: 'Produto criado com sucesso'});
     }catch(error){
         console.error('Erro ao criar produto:', error);
         res.status(500).json({ error: 'Erro ao criar produto' });

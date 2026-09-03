@@ -1,7 +1,11 @@
 export interface ProdutoResponseDTO {
-    id: number;
+    id: Number;
     nome: string;
     descricao: string;
-    preco: number;
-    quantidade: number;
+    valor: number;
+    dataVencimento: Date;
+    categoria: {
+        id: number;
+        nomeCategoria: string;
+    }
 }

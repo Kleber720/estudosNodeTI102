@@ -19,7 +19,7 @@ class ProdutoInfrastructure implements ProdutoRepository {
     }
     
 
-    async criarProduto(produto: Produto): Promise<boolean> {
+    async criarProduto(produto: Produto): Promise<Number> {
         const connection = await pool.getConnection();
         try {
             const [result] = await connection.query<ResultSetHeader>(
@@ -32,7 +32,7 @@ class ProdutoInfrastructure implements ProdutoRepository {
                     this.getIdCategoriaBanco(produto)
                 ]
             );
-            return result.affectedRows > 0;
+            return result.insertId;
         }finally {
             connection.release();
         }
@@ -154,6 +154,6 @@ class ProdutoInfrastructure implements ProdutoRepository {
 
 const produtoInfrastructure = new ProdutoInfrastructure();
 export { ProdutoInfrastructure };     //  Usar na UC de Teste
-export default produtoInfrastructure; //  Acessar pela controller
+export default produtoInfrastructure; //  Acessar pela controller ou a services
 
 
