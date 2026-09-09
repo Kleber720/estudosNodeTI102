@@ -9,7 +9,7 @@ class CategoriaInfrastructure implements CategoriaRepository {
         const connection = await pool.getConnection();
         try{
             
-            const [result]= await connection.query<ResultSetHeader>("INSERT INTO categorias (nome) VALUES (?)", [categoria.getNome()]);
+            const [result]= await connection.query<ResultSetHeader>("INSERT INTO categorias (nome_categoria) VALUES (?)", [categoria.getNome()]);
             return result.insertId;
 
         }catch (error) {

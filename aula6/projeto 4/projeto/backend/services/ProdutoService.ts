@@ -34,7 +34,7 @@ class ProdutoService{
                     data_vencimento: produto.data_vencimento,
                     categoria: {
                         id: categoriaProduto.id,
-                        nome_categoria: categoriaProduto.nome
+                        nome_categoria: categoriaProduto.nome_categoria
                     }
                 };
 

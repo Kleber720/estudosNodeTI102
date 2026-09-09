@@ -71,7 +71,7 @@ class CategoriaService{
         const categoriaResponseDTO:ListarCategoriaDTO={
                 
                 id: categoria[0].id,
-                nome: categoria[0].nome
+                nome: categoria[0].nome_categoria
         }
 
         return  categoriaResponseDTO ;
