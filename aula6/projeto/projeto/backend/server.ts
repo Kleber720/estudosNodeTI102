@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import routerProduto from './routes/produtoRoutes';
 import routerCategoria from './routes/categoriaRoutes';
+import routerUsuario from './routes/usuarioRoutes';
+
 const app = express();
 dotenv.config();
 
@@ -13,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api",routerProduto)
 app.use("/api",routerCategoria)
+app.use("/api",routerUsuario)
 
 
 

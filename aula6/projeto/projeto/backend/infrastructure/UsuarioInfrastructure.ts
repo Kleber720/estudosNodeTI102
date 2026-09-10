@@ -56,3 +56,8 @@ export class UsuarioInfrastructure implements UsuarioRepository{
     }
 
 }
+
+const usuarioInfrastructure= new UsuarioInfrastructure();
+
+// export { categoriaInfrastructure };
+export default usuarioInfrastructure;

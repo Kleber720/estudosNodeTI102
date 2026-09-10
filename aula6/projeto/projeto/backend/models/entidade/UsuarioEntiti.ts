@@ -1,11 +1,11 @@
 
 export class UsuarioEntitie{
-   private id:Number
+   private id?:Number
    private nome:string
    private email:string
    private senha:string
 
-    constructor(id:number,nome:string,email:string,senha:string){
+    constructor(nome:string,email:string,senha:string,id?:number){
         this.id = id
         this.nome = nome
         this.email = email
