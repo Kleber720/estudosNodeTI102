@@ -14,7 +14,7 @@ export class UsuarioInfrastructure implements UsuarioRepository{
                 return result.insertId;
 
         }catch (error) {
-
+            await connection.rollback();
             throw error;
 
     }finally{
@@ -30,7 +30,7 @@ export class UsuarioInfrastructure implements UsuarioRepository{
                 return email
 
         }catch (error) {
-
+            await connection.rollback();
             throw error;
 
         }finally{
@@ -46,7 +46,7 @@ export class UsuarioInfrastructure implements UsuarioRepository{
                 return usuarios
 
         }catch (error) {
-
+            await connection.rollback();
             throw error;
 
         }finally{

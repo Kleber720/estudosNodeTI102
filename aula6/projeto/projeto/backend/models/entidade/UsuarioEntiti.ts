@@ -12,8 +12,7 @@ export class UsuarioEntitie{
         this.senha = senha
     }
 
-    getId():Number{
-            
+    getId():Number | undefined{
             return this.id
         }
     setId(id:Number):void{
