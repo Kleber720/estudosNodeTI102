@@ -18,12 +18,13 @@ class CategoriaService{
         for (const categoria of categorias) {
             const categoriaResponse: ListarCategoriaDTO = {
                 id: categoria.id,
-                nome: categoria.nome
+                nome: categoria.nome_categoria
             };
 
             categoriasResponse.push(categoriaResponse);
         }
 
+        console.log("testando o categoria response: ", categoriasResponse);
         return categoriasResponse;
     }catch (erro) {     
 

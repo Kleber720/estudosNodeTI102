@@ -6,6 +6,7 @@ export async function listarCategorias(req: Request,res: Response){
     try{
         const categorias= await categoriaService.listarCategorias();
         res.status(200).json(categorias);
+        
     }catch(error){
         console.error('Erro ao listar categorias:', error);
         res.status(500).json({ error: 'Erro ao listar categorias' });

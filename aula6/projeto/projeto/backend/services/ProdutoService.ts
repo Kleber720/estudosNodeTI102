@@ -24,7 +24,7 @@ class ProdutoService{
                     throw new Error(`Categoria com ID ${produto.id_categoria} não encontrada`);
                 }
                 
-                const categoriaProduto= await categoriaInfrastructure.buscarCategoriaPorId(produto.id_categoria);
+                console.log('Categoria encontrada:', categoria);
 
                 const produtoResponse: ProdutoResponseDTO = {
                     id: produto.id,
@@ -33,8 +33,8 @@ class ProdutoService{
                     valor: produto.valor,
                     data_vencimento: produto.data_vencimento,
                     categoria: {
-                        id: categoriaProduto.id,
-                        nome_categoria: categoriaProduto.nome_categoria
+                        id: categoria[0].id,
+                        nome_categoria: categoria[0].nome_categoria
                     }
                 };
 
@@ -64,7 +64,7 @@ class ProdutoService{
                 }
 
 
-                const categoria = new Categoria(verificarCategoria.nome, verificarCategoria.id); 
+                const categoria = new Categoria(verificarCategoria[0].nome_categoria, Number( verificarCategoria.id[0])); 
 
                 const produto = new Produto(
                     this.tratarNome(produtoDTO.nome),
@@ -76,6 +76,8 @@ class ProdutoService{
 
                   const novoProdutoID=await produtoInfrastructure.criarProduto(produto);
                   const categoriaProduto= await categoriaInfrastructure.buscarCategoriaPorId(produtoDTO.id_categoria);
+
+                  console.log('Categoria encontrada ao cadastrar produto:', categoriaProduto);
                     const produtoNovo:ProdutoResponseDTO={
                             id: novoProdutoID,
                             nome: String(produto.getNome()) ,
@@ -84,7 +86,7 @@ class ProdutoService{
                             data_vencimento: produto.getDataVencimento().getData(),
                             categoria: {
                             id: verificarCategoria.id,
-                            nome_categoria: categoriaProduto.nome
+                            nome_categoria: categoriaProduto.nome_categoria
                             }
                     }
 
