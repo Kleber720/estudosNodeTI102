@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import produtoService from '../services/ProdutoService';
 import { CriarProdutoDTO } from '../models/dto/CriarProdutoDTO';
+import { AtualizarProdutoDTO } from '../models/dto/AtualizarProdutoDTO';
 
 
 export async function listarProdutos(req: Request, res: Response) { 
@@ -31,8 +32,10 @@ export async function criarProduto(req: Request, res: Response) {
 export async function atualizarProduto(req: Request, res: Response) {
     try{
         const idProduto=  req.params.id;
-        const produtoAtualizado = req.body;
-        const produtoaAtualizadoNovo= await produtoService.atualizarProduto((idProduto),produtoAtualizado);
+       
+        const produtoAtualizado:AtualizarProdutoDTO = req.body;
+
+        const produtoaAtualizadoNovo= await produtoService.atualizarProduto(idProduto,produtoAtualizado);
 
         res.status(200).json({produtoaAtualizadoNovo,mensagem:'Produto atualizado com sucesso'});
 

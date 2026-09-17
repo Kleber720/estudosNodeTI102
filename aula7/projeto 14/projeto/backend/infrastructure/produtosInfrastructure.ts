@@ -77,11 +77,19 @@ class ProdutoInfrastructure implements ProdutoRepository {
 
     }
 
+
     async atualizarProduto(id: number, produto: Produto): Promise<boolean> {
         const connection = await pool.getConnection();
+    
         try {
             const [result] = await connection.query<ResultSetHeader>(
-                'UPDATE produtos SET nome = ?, descricao = ?, valor = ?, data_vencimento = ?, id_categoria = ? WHERE id_produto = ?',
+                `UPDATE produtos 
+                 SET nome = ?, 
+                     descricao = ?, 
+                     valor = ?, 
+                     data_vencimento = ?, 
+                     id_categoria = ?
+                 WHERE id_produto = ?`,
                 [
                     produto.getNome(),
                     produto.getDescricao(),
@@ -91,11 +99,19 @@ class ProdutoInfrastructure implements ProdutoRepository {
                     id
                 ]
             );
+    
             return result.affectedRows > 0;
+    
+        } catch (erro: any) {
+            throw new Error(
+                "Erro ao atualizar produto: " + erro.message
+            );
+    
         } finally {
             connection.release();
         }
     }
+   
 
     async atualizarProdutoParcial(id: number, produto: Produto): Promise<boolean> {
         const connection = await pool.getConnection();

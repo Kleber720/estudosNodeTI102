@@ -6,8 +6,6 @@ const categoria=document.getElementById("categoria");
 // quando eu for cadastrar eu vou pegar o submit
 const tbody=document.querySelector("tbody");
 const formulario=document.getElementById("product-form");
-
-
 const addCategoryBtn = document.getElementById('add-category-btn');
 const addCategoryModal = document.getElementById('add-category-modal');
 const closeModalBtn = document.getElementById('close-modal-btn');
@@ -76,6 +74,45 @@ function validarValor(valor){
 
 }
 
+async function deletarProduto(id) {
+
+    try {
+
+        console.log("Tentando deletar produto:", id);
+
+        const response = await fetch(
+            `http://localhost:3000/api/produtos/${id}`,
+            {
+                method: 'DELETE'
+            }
+        );
+
+        const dados = await response.json();
+
+        console.log("Resposta do servidor:", dados);
+
+        if (response.ok) {
+
+            alert(dados.mensagem);
+
+            carregarProdutos();
+
+        } else {
+
+            throw new Error(
+                dados.erro ||
+                dados.mensagem ||
+                `Erro HTTP ${response.status}`
+            );
+        }
+
+    } catch (erro) {
+
+        console.error("Erro ao deletar:", erro);
+
+        alert("Erro ao deletar produto: " + erro.message);
+    }
+}
 
 
 

@@ -8,7 +8,7 @@ import { Categoria } from "../models/entidade/Categoria";
 
 
 class ProdutoService{
-    tratarNome(nome: String): String{       
+    tratarNome(nome: String): string{       
         return nome.trim().toUpperCase();
     }
 
@@ -39,7 +39,7 @@ class ProdutoService{
                         nome_categoria: categoriaProduto[0].nome_categoria
                     }
                 };
-                console.log("Testando o produto: ",produtoResponse)
+              
                 produtosResponse.push(produtoResponse);
             }
 
@@ -101,48 +101,54 @@ class ProdutoService{
 
     }
 
-    async atualizarProduto(id:number, produtoDTO: AtualizarProdutoDTO): Promise<ProdutoResponseDTO>{
-
-        try{
+    async atualizarProduto(id: number, produtoDTO: AtualizarProdutoDTO): Promise<ProdutoResponseDTO> {
+        try {
             const produtoExistente = await produtoInfrastructure.buscarProdutoPorId(id);
-            if(!produtoExistente) {
+            if (!produtoExistente) {
                 throw new Error('Produto não encontrado');
             }
 
+            const categoria = await categoriaInfrastructure.buscarCategoriaPorId(produtoDTO.id_categoria);
+           
+           
+            if (!categoria) {
+                throw new Error('Categoria não encontrada');
+            }
+
+            const categoriaAtualizada = new Categoria(categoria[0].id, categoria[0].nome_categoria);
+
             const produtoAtualizado = new Produto(
-                produtoDTO.nome ? this.tratarNome(produtoDTO.nome) : produtoExistente[0].nome,
-                produtoDTO.descricao ? produtoDTO.descricao : produtoExistente[0].descricao,
-                produtoDTO.valor ? produtoDTO.valor : produtoExistente[0].valor,
-                produtoDTO.data_vencimento ? produtoDTO.data_vencimento : produtoExistente[0].data_vencimento,
-                new Categoria(produtoExistente[0].categoria.nome_categoria, produtoExistente[0].categoria.id)
+                this.tratarNome(produtoDTO.nome || produtoExistente.nome),
+                produtoDTO.descricao || produtoExistente.descricao,
+                produtoDTO.valor || produtoExistente.valor,
+                produtoDTO.data_vencimento || produtoExistente.data_vencimento,
+                categoriaAtualizada,
+                id
             );
+            console.log("Produto atualizado: ", produtoAtualizado)
+            await produtoInfrastructure.atualizarProduto(id, produtoAtualizado);
 
-           const resposta= await produtoInfrastructure.atualizarProduto(id, produtoAtualizado);
-           if(!resposta){
-            throw new Error('Produto não foi atualizado !');
-           }
+            const categoriaProduto= await categoriaInfrastructure.buscarCategoriaPorId(produtoDTO.id_categoria);
 
-              const categoriaProduto= await categoriaInfrastructure.buscarCategoriaPorId(produtoAtualizado.getCategoria().getId());
-    
-                const produtoResponse: ProdutoResponseDTO = {
-                 id: id,
-                 nome: String(produtoAtualizado.getNome()) ,
-                 descricao:String(produtoAtualizado.getDescricao()),
-                 valor: produtoAtualizado.getPreco().getPreco(),
-                 data_vencimento: produtoAtualizado.getDataVencimento().getData(),
-                 categoria: {
-                      id: categoriaProduto[0].id,
-                      nome_categoria: categoriaProduto[0].nome_categoria
-                 }
-                };
-    
-                return produtoResponse;
+            const produtoResponse: ProdutoResponseDTO = {
+                id: id,
+                nome: String(produtoAtualizado.getNome()),
+                descricao: String(produtoAtualizado.getDescricao()),
+                valor: produtoAtualizado.getPreco().getPreco(),
+                data_vencimento: produtoAtualizado.getDataVencimento().getData(),
+                categoria: {
+                    id: categoriaProduto.id,
+                    nome_categoria: categoriaProduto.nome_categoria
+                }
+            };
 
-        }catch(erro){
+            return produtoResponse;
+        } catch (erro) {
             throw new Error(`Erro ao atualizar produto: ${erro.message}`);
-    }
-    }
+        }
 
+    }
+   
     async deletarProduto(id: number): Promise<void> {
         try {
             const produtoExistente = await produtoInfrastructure.buscarProdutoPorId(id);
