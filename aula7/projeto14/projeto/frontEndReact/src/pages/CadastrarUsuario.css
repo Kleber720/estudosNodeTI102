@@ -1,0 +1,68 @@
+.containerCadastrarUsuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+ 
+}
+ 
+form{
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+ 
+form .inputCadastrarUsuario{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+ 
+form .inputCadastrarUsuario input{
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+ 
+}
+ 
+ 
+form .inputCadastrarUsuario .iconCadastrar{
+    color: var(--color-primary-light);
+}
+ 
+.navegacaoCadastrarUsuario{
+ 
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;    
+ 
+}
+ 
+.navegacaoCadastrarUsuario button{
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: white;
+    cursor: pointer;
+}
+.navegacaoCadastrarUsuario button:hover{
+    background-color: var( --color-primary-light);
+    color: black;
+    
+}
+ 
+.navegacaoCadastrarUsuario .voltar{
+ 
+   margin: 0 5px;
+   font-size: 2em;
+   color: var(--color-primary-light);
+   cursor: pointer;
+ 
+}
