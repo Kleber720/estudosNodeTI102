@@ -1,70 +1,84 @@
-/* Login.css */
-
-
-
-.formularioLogin {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+.containerLogin{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-}
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+     
+  }
+   
+  .containerLogin img{
+      width: 300px;
+      margin: 0;
+  }
+   
+  .formularioLogin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+  }
+   
+  img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+  }
+   
+  .inputLogin {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      width: 100%;
+  }
+   
+  .inputLogin .iconViewLogin{
+      color: var(--color-primary-light);
+  }
+   
+  .inputLogin input {
+      border: none;
+      outline: none;
+      flex: 1;
+      margin-left: 10px;
+  }
+   
+  button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+  }
+   
+  button:hover {
+      background-color: #0056b3;
+  }
+   
+  @media (max-width: 768px) {
+      .formularioLogin {
+          padding: 15px;
+      }
+   
+      button {
+          font-size: 14px;
+      }
+  }
 
-.formularioLogin h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: #333333;
-    text-align: center;
-}
-
-.formularioLogin form {
-    display: flex;
-    flex-direction: column;
-}
-
-.formularioLogin input {
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.formularioLogin input:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.formularioLogin button {
-    padding: 0.75rem;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+  p{
+    margin: 10px;
+    color: blue;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.formularioLogin button:hover {
-    background-color: #0056b3;
-}
-
-.formularioLogin .forgot-password {
-    margin-top: 1rem;
-    text-align: center;
-}
-
-.formularioLogin .password a {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-
-.formularioLogin .password a:hover {
-    text-decoration: underline;
-}
+  }

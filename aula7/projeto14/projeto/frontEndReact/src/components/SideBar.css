@@ -1,0 +1,25 @@
+
+.sideBar{
+    background-color: var(--color-primary);
+    color: white;
+    height: 100vh;
+    width: 120px;
+    padding: 7px;
+}
+
+.sideBar ul li{
+    display: flex;
+    margin: 7px;
+    cursor: pointer;
+
+}
+
+.sideBar ul li p{
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+.sideBar ul li:hover{
+    
+    color: var(--color-quinary);
+}

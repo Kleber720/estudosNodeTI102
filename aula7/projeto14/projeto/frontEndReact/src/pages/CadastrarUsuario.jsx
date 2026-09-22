@@ -4,6 +4,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { IoChevronBackCircle } from "react-icons/io5";
 import "./CadastrarUsuario.css"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
  
 function CadastrarUsuario(){
 
@@ -12,6 +13,18 @@ function CadastrarUsuario(){
     const[password,setPassword]=useState("");
     console.log("o valor de nome:",nome);
     console.log("o valor de email:",email);
+    const navegation=useNavigate()
+
+function handleCadastrarUsuario(e){
+    if(e.target.innerText==="Cadastrar"){
+        alert("Usuario cadastrado com sucesso")
+        navegation("/menu")
+
+    }if(e.target.innerText==="Voltar"){
+        navegation("/")
+    }
+}
+
     return(
         <div className="containerCadastrarUsuario">
             <form>
@@ -47,8 +60,8 @@ function CadastrarUsuario(){
                 </div>
  
                 <div className="navegacaoCadastrarUsuario">
-                    <IoChevronBackCircle className="voltar"  />
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" onClick={handleCadastrarUsuario}>Voltar</button>
+                    <button type="submit" onClick={handleCadastrarUsuario}>Cadastrar</button>
                 </div>
                
  

@@ -15,16 +15,24 @@ function Login(){
     function handleLogin(e){
         if(email==="Carlos"&& password==="1234"){
             alert("Seja bem vindo")
-            navegation("/cadastrar")
+            navegation("/menu")
+
+        
     }else{
         alert("Usuario ou senha incorretos")
     }
+    if(e.target.innerText==="Cadastrar um novo Usuario"){
+        navegation("/cadastrar")
+    }
+}
 
 
     return(
-        <>
-        <div>
+        
+        <div className='containerLogin'>
+
         <img src={img_login1} alt="Imagem de login Azul" />
+
         <div className="formularioLogin">
 
             <div className="inputLogin" >
@@ -61,9 +69,9 @@ function Login(){
 
         </div>
         
-        </>
+        
         )
-    }
+    
 }
 
 export default Login;
